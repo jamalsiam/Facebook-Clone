@@ -25,19 +25,18 @@ import { MainPage } from './../main/main';
  	}
 
  	logIn(email:string,pass:string){
- 		this.navCtrl.push(MainPage)
  		this.msg=""
- 		// this.projectService.logIn({email:email,
- 		// 	password:pass})
- 		// .subscribe(datas =>{
- 		// 	if (datas=="signin") {
- 		// 		this.storage.set(`email ${ email }`, email);
- 		// 		this.navCtrl.push(HomePage)
- 		// 	}
- 		// 	else
- 		// 		this.msg=datas;
+ 		this.projectService.logIn({email:email,
+ 			password:pass})
+ 		.subscribe(datas =>{
+ 			if (datas=="signin") {
+ 				this.storage.set(`email ${ email }`, email);
+ 				this.navCtrl.push(MainPage)
+ 			}
+ 			else
+ 				this.msg=datas;
 
- 		// })
+ 		})
 
 
  	}

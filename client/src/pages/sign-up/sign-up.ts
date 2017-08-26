@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 
 import { ProjectService } from '../../app/app.service';
 import { HomePage } from './../home/home';
+import { MainPage } from './../main/main';
+
 /**
  * Generated class for the SignUpPage page.
  *
@@ -30,8 +32,8 @@ export class SignUpPage {
   	.subscribe(datas =>{
  			if (datas=="signup") {
  				this.storage.set(`email ${ email }`, email);
- 				this.navCtrl.push(HomePage)
- 			}
+        this.navCtrl.push(MainPage)
+      }
  			else
  				this.msg=datas;
 
