@@ -11,13 +11,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
+import { MainPage } from '../pages/main/main';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     SignUpPage,
-    LoginPage
+    LoginPage,
+    MainPage
   ],
   imports: [
   	HttpModule,
@@ -30,7 +32,8 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
     MyApp,
     HomePage,
     SignUpPage,
-    LoginPage
+    LoginPage,
+    MainPage
   ],
   providers: [
     StatusBar,

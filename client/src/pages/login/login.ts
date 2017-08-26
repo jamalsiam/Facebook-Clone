@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SignUpPage } from './../sign-up/sign-up';
 import { ProjectService } from '../../app/app.service';
 import { Storage } from '@ionic/storage';
-import { HomePage } from './../home/home'
+import { HomePage } from './../home/home';
+import { MainPage } from './../main/main';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,18 +25,19 @@ import { HomePage } from './../home/home'
  	}
 
  	logIn(email:string,pass:string){
+ 		this.navCtrl.push(MainPage)
  		this.msg=""
- 		this.projectService.logIn({email:email,
- 			password:pass})
- 		.subscribe(datas =>{
- 			if (datas=="signin") {
- 				this.storage.set(`email ${ email }`, email);
- 				this.navCtrl.push(HomePage)
- 			}
- 			else
- 				this.msg=datas;
+ 		// this.projectService.logIn({email:email,
+ 		// 	password:pass})
+ 		// .subscribe(datas =>{
+ 		// 	if (datas=="signin") {
+ 		// 		this.storage.set(`email ${ email }`, email);
+ 		// 		this.navCtrl.push(HomePage)
+ 		// 	}
+ 		// 	else
+ 		// 		this.msg=datas;
 
- 		})
+ 		// })
 
 
  	}
