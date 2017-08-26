@@ -33,6 +33,8 @@ export class SignUpPage {
  			if (datas=="signup") {
  				this.storage.set(`email ${ email }`, email);
         this.navCtrl.push(MainPage)
+        this.navCtrl.setRoot(this.navCtrl.getActive().component);
+
       }
  			else
  				this.msg=datas;

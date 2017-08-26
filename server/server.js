@@ -16,6 +16,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.post('/api/signup',handlers.handleUser.signUp);
+app.post('/api/login',handlers.handleUser.login);
 app.get('/api/getMethod',handlers.handleData.getData);
 app.post('/api/postmethod',handlers.handleData.addData);
   

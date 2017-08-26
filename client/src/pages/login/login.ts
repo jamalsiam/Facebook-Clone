@@ -30,7 +30,7 @@ import { MainPage } from './../main/main';
  			password:pass})
  		.subscribe(datas =>{
  			if (datas=="signin") {
- 				this.storage.set(`email ${ email }`, email);
+ 				this.storage.set('email', email);
  				this.navCtrl.push(MainPage)
  			}
  			else
@@ -41,6 +41,13 @@ import { MainPage } from './../main/main';
 
  	}
  	ionViewDidLoad() {
+ 		this.storage.get('email').then((val) => {
+    		if (val) {
+
+ 				this.navCtrl.push(MainPage)
+ 				this.navCtrl.setRoot(this.navCtrl.getActive().component);
+    		}
+  		});
  		console.log('ionViewDidLoad LoginPage');
  	}
  	siginUp(){
