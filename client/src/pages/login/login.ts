@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SignUpPage } from './../sign-up/sign-up';
+import { ProjectService } from '../../app/app.service';
+import { Storage } from '@ionic/storage';
+import { HomePage } from './../home/home'
 
 /**
  * Generated class for the LoginPage page.
@@ -8,18 +12,38 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * on Ionic pages and navigation.
  */
 
-@IonicPage()
-@Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
-})
-export class LoginPage {
+ @IonicPage()
+ @Component({
+ 	selector: 'page-login',
+ 	templateUrl: 'login.html',
+ })
+ export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+ 	msg:string="";
+ 	constructor(public navCtrl: NavController, public navParams: NavParams,private projectService:ProjectService,private storage: Storage) {
+ 	}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+ 	logIn(email:string,pass:string){
+ 		this.msg=""
+ 		this.projectService.logIn({email:email,
+ 			password:pass})
+ 		.subscribe(datas =>{
+ 			if (datas) {
+ 				this.storage.set(`email ${ email }`, email);
+ 				this.navCtrl.push(HomePage)
+ 			}
+ 			else
+ 				this.msg=datas;
 
-}
+ 		})
+
+
+ 	}
+ 	ionViewDidLoad() {
+ 		console.log('ionViewDidLoad LoginPage');
+ 	}
+ 	siginUp(){
+ 		this.navCtrl.push(SignUpPage)
+ 	}
+
+ }
