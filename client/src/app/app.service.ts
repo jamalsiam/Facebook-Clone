@@ -13,17 +13,28 @@ export class ProjectService{
     headers.append('Authorization', 'Basic ' +
       btoa('a20e6aca-ee83-44bc-8033-b41f3078c2b6:c199f9c8-0548-4be79655-7ef7d7bf9d20')); 
   }
-  
+
   logIn(record){
      var headers = new Headers();
     this.createAuthorizationHeader(headers);
     headers.append('Content-Type', 'application/json');
     //var content = JSON.stringify(record);
     return this.http.post(
-      '/api/postmethod', record, {
+      '/api/login', record, {
         headers: headers
       }).map(res => res.json())
   }
+    signUp(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/signup', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
 
 	postMethod(record){
      var headers = new Headers();
