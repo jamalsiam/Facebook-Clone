@@ -28,7 +28,7 @@ export class SignUpPage {
   								email:email,
   								password:password})
   	.subscribe(datas =>{
- 			if (datas) {
+ 			if (datas=="signup") {
  				this.storage.set(`email ${ email }`, email);
  				this.navCtrl.push(HomePage)
  			}

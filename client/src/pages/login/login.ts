@@ -28,7 +28,7 @@ import { HomePage } from './../home/home'
  		this.projectService.logIn({email:email,
  			password:pass})
  		.subscribe(datas =>{
- 			if (datas) {
+ 			if (datas=="signin") {
  				this.storage.set(`email ${ email }`, email);
  				this.navCtrl.push(HomePage)
  			}

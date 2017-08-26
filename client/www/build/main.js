@@ -46,7 +46,7 @@ var SignUpPage = (function () {
             email: email,
             password: password })
             .subscribe(function (datas) {
-            if (datas) {
+            if (datas == "signup") {
                 _this.storage.set("email " + email, email);
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */]);
             }
@@ -424,7 +424,7 @@ var LoginPage = (function () {
         this.projectService.logIn({ email: email,
             password: pass })
             .subscribe(function (datas) {
-            if (datas) {
+            if (datas == "signin") {
                 _this.storage.set("email " + email, email);
                 _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_5__home_home__["a" /* HomePage */]);
             }
