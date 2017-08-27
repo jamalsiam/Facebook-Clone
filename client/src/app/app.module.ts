@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { MainPage } from '../pages/main/main';
+import { ProfilePage } from '../pages/profile/profile';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { MainPage } from '../pages/main/main';
     HomePage,
     SignUpPage,
     LoginPage,
-    MainPage
+    MainPage,
+    ProfilePage
   ],
   imports: [
   	HttpModule,
@@ -33,7 +35,8 @@ import { MainPage } from '../pages/main/main';
     HomePage,
     SignUpPage,
     LoginPage,
-    MainPage
+    MainPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ProfilePage } from './../profile/profile';
+
 /**
  * Generated class for the MainPage page.
  *
@@ -24,6 +26,9 @@ export class MainPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MainPage');
+  }
+  onViewProfilePage(){
+    this.navCtrl.push(ProfilePage);
   }
 
 }
