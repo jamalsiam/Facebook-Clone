@@ -24,6 +24,7 @@ export class ProjectService{
         headers: headers
       }).map(res => res.json())
   }
+
     signUp(record){
      var headers = new Headers();
     this.createAuthorizationHeader(headers);
@@ -35,8 +36,64 @@ export class ProjectService{
       }).map(res => res.json())
   }
 
+  getProfileInfo(record){
+    var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/getprofileinfo', record, {
+        headers: headers
+    }).map(res => res.json())
+  }
 
-	postMethod(record){
+	
+
+  changeMobileNumber(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/changemobilenumber', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
+  changeStatus(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/changestatus', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
+  changeName(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/changename', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
+  changeImage(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/changeimage', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
+  postMethod(record){
      var headers = new Headers();
     this.createAuthorizationHeader(headers);
     headers.append('Content-Type', 'application/json');
@@ -46,10 +103,6 @@ export class ProjectService{
         headers: headers
       }).map(res => res.json())
   }
-
-
-
-
   getMethod (){
     return this.http.get('/api/getMethod').map(res=> res.json());
   }

@@ -17,9 +17,16 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.post('/api/signup',handlers.handleUser.signUp);
 app.post('/api/login',handlers.handleUser.login);
+app.post('/api/getprofileinfo',handlers.handleUser.getProfileInfo);
+app.post('/api/changemobilenumber',handlers.handleUser.changeMobileNumber);
+app.post('/api/changestatus',handlers.handleUser.changeStatus);
+app.post('/api/changename',handlers.handleUser.changeName);
+app.post('/api/changeimage',handlers.handleUser.changeImage);
+
 app.get('/api/getMethod',handlers.handleData.getData);
 app.post('/api/postmethod',handlers.handleData.addData);
   
+ 
 
 app.listen(process.env.PORT || 8000);
 console.log('Running on port 8000...');

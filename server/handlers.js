@@ -68,5 +68,36 @@ module.exports.handleUser={
     });
      }
    });
+  },
+  getProfileInfo:function (req,res) {
+    User.findOne({email:req.body.email})
+    .then(function (user) {
+      res.json({user:user})
+    })
+  },
+  changeMobileNumber:function (req,res) {
+    User.update({email:req.body.email}, { $set: { mobile: req.body.mobile }})
+   .then(function (user) {
+     res.json("s");
+  })
+  },
+  changeStatus:function (req,res) {
+    User.update({email:req.body.email}, { $set: { status: req.body.status }})
+   .then(function (user) {
+      res.json("s");
+  })
+  },
+  changeName:function (req,res) {
+    User.update({email:req.body.email}, { $set: { name: req.body.name }})
+   .then(function (user) {
+     res.json("s");
+  })
+  },
+  changeImage:function (req,res) {
+    User.update({email:req.body.email}, { $set: { image: req.body.image }})
+   .then(function (user) {
+     res.json("s");
+  })
   }
+
 }
