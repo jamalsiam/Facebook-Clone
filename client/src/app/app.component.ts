@@ -11,20 +11,20 @@ import { LoginPage } from '../pages/login/login';
 })
 export class MyApp {
 
-rootPage:any ;
-//rootPage:any=MainPage ;
+//rootPage:any ;
+rootPage:any=MainPage ;
   
   
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private storage: Storage) {
-    this.storage.get('email').then((val) => {
-      if (val) {
-          this.rootPage = MainPage;
-        }
-      else{
-        this.rootPage  = LoginPage;
-      }
-    });
+    // this.storage.get('email').then((val) => {
+    //   if (val) {
+    //       this.rootPage = MainPage;
+    //     }
+    //   else{
+    //     this.rootPage  = LoginPage;
+    //   }
+    // });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

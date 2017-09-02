@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { ImagePicker} from '@ionic-native/image-picker';
+import { Camera } from 'ionic-native';
 import { ProjectService } from '../../app/app.service';
+
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,29 +24,42 @@ import { ProjectService } from '../../app/app.service';
  	status:string;
  	mobileNumber:string;
  	image:string;
+ 	base64Image:string;
 
-
- 	constructor(public navCtrl: NavController,public alertCtrl:AlertController, public navParams: NavParams,public projectService:ProjectService,public storage: Storage) {
+ 	constructor(public navCtrl: NavController,
+ 		public alertCtrl:AlertController,
+ 		public navParams: NavParams,
+ 		public projectService:ProjectService,
+ 		public storage: Storage) {
  		this.storage.get('email').then((val) => {
  			this.email= val;
  			this.getdata(val)
  		});
-
  	}
 
-
- 	changeImage(){
-
+ 	accessGallery(){
+ 		Camera.getPicture({
+ 			sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+ 			destinationType: Camera.DestinationType.DATA_URL
+ 		}).then((imageData) => {
+ 			this.base64Image = 'data:image/jpeg;base64,'+imageData;
+ 			this.projectService.changeStatus({email:this.email,
+ 				image:this.base64Image})
+ 			.subscribe(datas =>{
+ 				this.getdata(this.email)
+ 			})
+ 		}, (err) => {
+ 			console.log(err);
+ 		});
  	}
+
  	changeName(){
- 		 
  		let alert = this.alertCtrl.create({
  			title: 'Change Name',
  			inputs: [
  			{
  				name: 'name',
  				placeholder: this.name
-
  			}
  			],
  			buttons: [
@@ -51,13 +67,11 @@ import { ProjectService } from '../../app/app.service';
  				text: 'Cancel',
  				role: 'cancel',
  				handler: data => {
-
  				}
  			},
  			{
  				text: 'Done',
  				handler: data => {
- 		
  					if (data.name) {
  						this.projectService.changeName({email:this.email,
  							name:data.name})
@@ -71,9 +85,8 @@ import { ProjectService } from '../../app/app.service';
  			]
  		});
  		alert.present();
-
-
  	}
+
  	changeStatus(){
  		let alert = this.alertCtrl.create({
  			title: 'change Status',
@@ -94,7 +107,7 @@ import { ProjectService } from '../../app/app.service';
  			{
  				text: 'Done',
  				handler: data => {
- 		
+
  					if (data.status) {
  						this.projectService.changeStatus({email:this.email,
  							status:data.status})
@@ -108,11 +121,8 @@ import { ProjectService } from '../../app/app.service';
  			]
  		});
  		alert.present();
-
-
-
-
  	}
+
  	changeMobileNumber(){
  		let alert = this.alertCtrl.create({
  			title: 'Change Mobile Number',
@@ -147,9 +157,8 @@ import { ProjectService } from '../../app/app.service';
  			]
  		});
  		alert.present();
-
-
  	}
+ 	
  	getdata(email:string){
  		this.projectService.getProfileInfo({email:email})
  		.subscribe(datas =>{
@@ -157,10 +166,7 @@ import { ProjectService } from '../../app/app.service';
  			this.name=datas.user.name;
  			this.mobileNumber=datas.user.mobile;
  			this.status=datas.user.status;
- 			this.image=datas.user.image;
-
-
+ 			this.base64Image=datas.user.image;
  		})
  	}
-
- }
+}
