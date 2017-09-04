@@ -25,8 +25,9 @@
   </ion-navbar>
   <ion-toolbar no-border-top>
     <ion-segment [(ngModel)]="apps" primary>
-      <ion-segment-button value="all">All</ion-segment-button>
-      <ion-segment-button value="favs">Recent</ion-segment-button>
+      <ion-segment-button value="allStory" (click)="getPost('allStory')" >All</ion-segment-button>
+      <ion-segment-button value="favsStory"(click)="getPost('favsStory')" >favs</ion-segment-button>
+      <ion-segment-button value="myStory" (click)="getPost('myStory')">My</ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -34,5 +35,23 @@
 
 
 <ion-content padding>
+
+
+  <ion-item>
+    <ion-label floating>Write something...</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+  <div style="float: right;">
+
+    <button ion-button icon-only  color="light" (click)="onNavigate()" > 
+      <ion-icon ios="ios-navigate" md="md-navigate"></ion-icon>
+    </button>
+
+    <button ion-button icon-only  color="light" (click)="onSelectImage()"> 
+      <ion-icon ios="ios-images" md="md-images"></ion-icon>
+    </button>
+
+    <button ion-button round outline (click)="onPostData()">Post</button>
+</div>
 
 </ion-content>
