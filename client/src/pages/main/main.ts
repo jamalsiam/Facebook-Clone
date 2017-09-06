@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Geolocation } from '@ionic-native/geolocation';
 import { ProfilePage } from './../profile/profile';
 
 /**
@@ -17,7 +18,11 @@ import { ProfilePage } from './../profile/profile';
 })
  export class MainPage {
   email:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public storage: Storage) {
+  postText:string;
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public storage: Storage,
+              private geolocation: Geolocation) {
 
    this.storage.get('email').then((val) => {
 
@@ -47,10 +52,19 @@ import { ProfilePage } from './../profile/profile';
   }
 
   onNavigate(){
-
+    this.geolocation.getCurrentPosition()
+      .then((location) => {
+        console.log('location fetched successfully ' + location);
+        
+        console.log("Location data fetched correctly!!");
+      })
+      .catch((err) => {
+        console.log('An error ocurred');
+          });
+    
   }
   onSelectImage(){
-
+    this.postText="hi";
   }
   onPostData(){
     

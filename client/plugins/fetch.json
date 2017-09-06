@@ -20,7 +20,7 @@
     "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-console@1.0.5"
+            "id": "cordova-plugin-console@^1.0.7"
         },
         "is_top_level": true,
         "variables": {}
@@ -63,6 +63,22 @@
             "id": "ionic-plugin-keyboard@~2.2.1"
         },
         "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-geolocation"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-compat": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-compat@^1.0.0"
+        },
+        "is_top_level": false,
         "variables": {}
     }
 }
