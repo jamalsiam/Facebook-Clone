@@ -4,7 +4,9 @@ import { Storage } from '@ionic/storage';
 import { Camera } from 'ionic-native';
 import { Geolocation } from '@ionic-native/geolocation';
 
+import { ProjectService } from '../../app/app.service'
 import { ProfilePage } from './../profile/profile';
+
 
 /**
  * Generated class for the MainPage page.
@@ -22,10 +24,13 @@ import { ProfilePage } from './../profile/profile';
   email:string;
   postText:string;
   base64Image:string;
+  locationLat:number;
+  locationLong:number;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
-              private geolocation: Geolocation) {
+              private geolocation: Geolocation,
+              private projectService:ProjectService) {
 
    this.storage.get('email').then((val) => {
 
@@ -59,6 +64,9 @@ import { ProfilePage } from './../profile/profile';
       .then((location) => {
         console.log('location fetched successfully ' + location);
         
+          this.locationLat=location.coords.latitude,
+          this.locationLong=location.coords.longitude
+        
         console.log("Location data fetched correctly!!");
       })
       .catch((err) => {
@@ -77,6 +85,15 @@ import { ProfilePage } from './../profile/profile';
   }
   
   onPostData(){
+    this.projectService.onPostData({
+      email:this.email,
+      postText:this.postText,
+      image:this.base64Image,
+      location:{latitude:this.locationLat,
+                longitude:this.locationLong}})
+    .subscribe(data=>{
+      
+    })
     
   }
   getFavPost(email:string){

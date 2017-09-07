@@ -82,6 +82,17 @@ export class ProjectService{
       }).map(res => res.json())
   }
 
+  onPostData(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/onpostdata', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
   changeImage(record){
      var headers = new Headers();
     this.createAuthorizationHeader(headers);
