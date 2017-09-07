@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Camera } from 'ionic-native';
 import { Geolocation } from '@ionic-native/geolocation';
+
 import { ProfilePage } from './../profile/profile';
 
 /**
@@ -19,6 +21,7 @@ import { ProfilePage } from './../profile/profile';
  export class MainPage {
   email:string;
   postText:string;
+  base64Image:string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
@@ -64,8 +67,15 @@ import { ProfilePage } from './../profile/profile';
     
   }
   onSelectImage(){
-    this.postText="hi";
+    Camera.getPicture({
+      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+      destinationType: Camera.DestinationType.DATA_URL
+    }).then((imageData) => {
+      this.base64Image = 'data:image/jpeg;base64,'+imageData;
+ 
+    })
   }
+  
   onPostData(){
     
   }
