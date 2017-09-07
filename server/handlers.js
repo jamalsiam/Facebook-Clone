@@ -101,3 +101,9 @@ module.exports.handleUser={
   }
 
 }
+
+module.exports.handlePost={
+  onPostData:function (req,res) {
+    // body...
+  }
+}
