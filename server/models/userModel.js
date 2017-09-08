@@ -34,7 +34,28 @@ var UserSchema = new mongoose.Schema({
       type: String,
       //required: true,
       // unique: true
+    },
+    post:[
+    {
+      postText:{
+        type:String;
+      },
+      image:{
+        type:String
+      },
+      location:
+      [
+        {
+          lat:{
+            type:String
+          },
+          lang:{
+            type:String
+          }
+        }
+      ]
     }
+    ]
 
 });
 
