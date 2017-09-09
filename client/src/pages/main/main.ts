@@ -26,6 +26,7 @@ import { ProfilePage } from './../profile/profile';
   base64Image:string;
   locationLat:number;
   locationLong:number;
+  apps:string="favsStory";
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public storage: Storage,
@@ -49,7 +50,7 @@ import { ProfilePage } from './../profile/profile';
     {
        console.log(typeRequest)
     }
-    else if(typeRequest=='allStory')
+    else if(typeRequest=='favsStory')
     {
         console.log(typeRequest)
     } 
@@ -85,14 +86,20 @@ import { ProfilePage } from './../profile/profile';
   }
   
   onPostData(){
-    this.projectService.onPostData({
-      email:this.email,
-      postText:this.postText,
-      image:this.base64Image,
-      location:{latitude:this.locationLat,
-                longitude:this.locationLong}})
+    this.projectService.onPostData({email:this.email,
+                                    postText:this.postText,
+                                    image:this.base64Image,
+                                    latitude:this.locationLat,
+                                    longitude:this.locationLong
+                                  })
     .subscribe(data=>{
-      
+      this.postText=""
+      this.base64Image=undefined
+      this.locationLat=undefined
+      this.locationLong=undefined
+      this.getPost("myStory")
+      this.apps="myStory"
+
     })
     
   }

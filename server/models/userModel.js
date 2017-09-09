@@ -38,7 +38,7 @@ var UserSchema = new mongoose.Schema({
     post:[
     {
       postText:{
-        type:String;
+        type:String
       },
       image:{
         type:String
