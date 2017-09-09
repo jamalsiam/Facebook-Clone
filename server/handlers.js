@@ -122,6 +122,12 @@ module.exports.handlePost={
   },
   getProfilePost:function (req,res) {
     console.log(req.body)
+    User.findOne({email:req.body.email})
+    .then(function (user){
+      res.json({post:user.post}) 
+    })
+      
+    
   }
 
 
