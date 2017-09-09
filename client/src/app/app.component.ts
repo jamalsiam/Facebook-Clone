@@ -12,7 +12,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
 
 //rootPage:any ;
-rootPage:any=MainPage ;
+rootPage:any=LoginPage ;
   
   
 

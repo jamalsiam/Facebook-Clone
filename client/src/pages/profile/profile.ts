@@ -169,4 +169,9 @@ import { ProjectService } from '../../app/app.service';
  			this.base64Image=datas.user.image;
  		})
  	}
+ 	onClickLogOut(){
+ 		this.storage.remove('email')
+		this.navCtrl.setRoot(this.navCtrl.getActive().component);
+	
+ 	}
 }
