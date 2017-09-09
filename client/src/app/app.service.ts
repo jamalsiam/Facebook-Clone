@@ -117,5 +117,17 @@ export class ProjectService{
   getMethod (){
     return this.http.get('/api/getMethod').map(res=> res.json());
   }
+  getProfilePost(record){
+
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/getprofilepost', record, {
+        headers: headers
+      }).map(res => res.json())
+    
+  }
 
 }

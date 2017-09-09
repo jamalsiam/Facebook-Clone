@@ -103,21 +103,26 @@ module.exports.handleUser={
 }
 
 module.exports.handlePost={
-  
+          
   onPostData:function (req,res) {
+  var record={postText: req.body.postText,
+                image:req.body.image,
+                lat:req.body.latitude,
+                lang:req.body.longitude}
+  console.log(record)  
     User.update(
       {email: req.body.email}, 
-      {$set: {  postText: req.body.postText,
-                image:req.body.image,
-                location:{lat:req.body.latitude,
-                          lang:req.body.longitude}
-              }}
+      {$push: {post:record}}
     )
     .then(function (user) {
       console.log(user.firstName)
 
       res.json("s");
     })  
+  },
+  getProfilePost:function (req,res) {
+    console.log(req.body)
   }
+
 
 }

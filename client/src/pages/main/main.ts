@@ -55,7 +55,8 @@ import { ProfilePage } from './../profile/profile';
         console.log(typeRequest)
     } 
     else
-    {
+    { 
+      this.getProfilePost(this.email)
         console.log(typeRequest)
     }
   }
@@ -110,8 +111,12 @@ import { ProfilePage } from './../profile/profile';
 
   }
   getProfilePost(email:string){
-
+    this.projectService.getProfilePost({email:email})
+    .subscribe(data=>{
+      console.log(data)
+    })
   }
+  
 
 
 }
