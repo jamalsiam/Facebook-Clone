@@ -130,12 +130,16 @@ module.exports.handlePost={
                      name:user.name,
                      email:user.email,
                      _id:user.post[i]._id })
-      res.json( {record:record}) 
       }
-     
+      res.json( {record:record}) 
+
+    }) 
+  },
+  getAllPost:function(req,res) {
+    User.find({})
+    .then(function(user) {
+      console.log(user)
     })
-      
-    
   }
 
 

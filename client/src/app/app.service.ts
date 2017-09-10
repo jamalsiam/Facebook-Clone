@@ -130,4 +130,9 @@ export class ProjectService{
     
   }
 
+  getAllPost(){
+        return this.http.get('/api/getallpost').map(res=> res.json());
+
+  }
+
 }

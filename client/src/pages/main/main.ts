@@ -52,7 +52,7 @@ import { User } from './../user/useremail';
   getPost(typeRequest:string){
     if(typeRequest=='allStory')
     {
-       console.log(typeRequest)
+       this.getAllPost()
     }
     else if(typeRequest=='favsStory')
     {
@@ -113,6 +113,11 @@ import { User } from './../user/useremail';
   }
   getAllPost(){
     this.posts=undefined;
+    this.projectService.getAllPost()
+    .subscribe(data=>{
+      console.log(data)
+    })
+
   }
   getProfilePost(email:string){
     this.posts=undefined;
