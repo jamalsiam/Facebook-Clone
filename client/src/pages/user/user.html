@@ -6,13 +6,53 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>user</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{userName}}</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+	<ion-list>
 
+		
+		<img *ngIf="!image"  src="assets/icon/fb_logo.png" height="100px" style="
+		border-radius: 50%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto " >
+
+		<img  [src]="image" *ngIf="image"  height="100px" style="
+		border-radius: 50%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto " >
+		
+		<ion-list-header>
+			Info:
+		</ion-list-header>
+		<ion-item>
+			<P>Email:{{userEmail}}</P>
+		</ion-item>
+		<ion-item >
+			<p>Moblie:{{mobile}}</p>
+		</ion-item>
+		<ion-item >
+			<p >Ststus:{{ststus}}</p>
+		</ion-item>
+	</ion-list>
+	<ion-list  >
+		<ion-list-header>
+			{{userName}} Post's:
+		</ion-list-header>
+		<ion-item *ngFor="let post of posts">
+			<a>{{userName}}</a>
+			<p>{{post.postText}}</p>
+			<div  style="width: 95%">
+				<button style="width: 30%;border-radius: 10px" ion-button outline (click)= "onClickLike()" >Like 0</button>
+				<button style="width: 70%;border-radius: 10px" ion-button outline (click)= "onClickSeeComment()">See Comment 0</button>
+			</div>
+		</ion-item>
+	</ion-list>
 </ion-content>
