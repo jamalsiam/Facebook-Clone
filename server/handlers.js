@@ -98,6 +98,13 @@ module.exports.handleUser={
    .then(function (user) {
      res.json("s");
   })
+  },
+  getUserInfo:function (req,res) {
+    User.findOne(req.body)
+    .then(function(data) {
+      console.log(data)
+      res.json({data:data})
+    })
   }
 
 }

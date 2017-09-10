@@ -22,9 +22,12 @@ app.post('/api/changemobilenumber',handlers.handleUser.changeMobileNumber);
 app.post('/api/changestatus',handlers.handleUser.changeStatus);
 app.post('/api/changename',handlers.handleUser.changeName);
 app.post('/api/changeimage',handlers.handleUser.changeImage);
+app.post('/api/getuserinfo',handlers.handleUser.getUserInfo);
 app.post('/api/onpostdata',handlers.handlePost.onPostData);
 app.post('/api/getprofilepost',handlers.handlePost.getProfilePost);
 app.get('/api/getallpost',handlers.handlePost.getAllPost);
+
+
 
 app.get('/api/getMethod',handlers.handleData.getData);
 app.post('/api/postmethod',handlers.handleData.addData);
