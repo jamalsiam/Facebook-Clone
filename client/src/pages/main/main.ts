@@ -26,6 +26,7 @@ import { ProfilePage } from './../profile/profile';
   base64Image:string;
   locationLat:number;
   locationLong:number;
+  posts:any;
   apps:string="favsStory";
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -105,14 +106,16 @@ import { ProfilePage } from './../profile/profile';
     
   }
   getFavPost(email:string){
-
+    this.posts=undefined;
   }
   getAllPost(){
-
+    this.posts=undefined;
   }
   getProfilePost(email:string){
+    this.posts=undefined;
     this.projectService.getProfilePost({email:email})
     .subscribe(data=>{
+      this.posts=data.record;
       console.log(data)
     })
   }

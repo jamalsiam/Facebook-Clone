@@ -122,9 +122,17 @@ module.exports.handlePost={
   },
   getProfilePost:function (req,res) {
     console.log(req.body)
+    var record=[];
     User.findOne({email:req.body.email})
     .then(function (user){
-      res.json({post:user.post}) 
+      for (var i = 0; i < user.post.length; i++) {
+        record.push({postText:user.post[i].postText,
+                     name:user.name,
+                     email:user.email,
+                     _id:user.post[i]._id })
+      res.json( {record:record}) 
+      }
+     
     })
       
     
