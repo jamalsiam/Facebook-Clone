@@ -14,6 +14,8 @@ import { LoginPage } from '../pages/login/login';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { MainPage } from '../pages/main/main';
 import { ProfilePage } from '../pages/profile/profile';
+import { UserPage } from '../pages/user/user';
+import { User } from '../pages/user/useremail';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ProfilePage } from '../pages/profile/profile';
     SignUpPage,
     LoginPage,
     MainPage,
-    ProfilePage
+    ProfilePage,
+    UserPage
+
   ],
   imports: [
   	HttpModule,
@@ -38,13 +42,16 @@ import { ProfilePage } from '../pages/profile/profile';
     SignUpPage,
     LoginPage,
     MainPage,
-    ProfilePage
+    ProfilePage,
+    UserPage
+
   ],
   providers: [
     StatusBar,
     ProjectService,
     SplashScreen,
     Geolocation,
+    User,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

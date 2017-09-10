@@ -58,7 +58,7 @@
 <ion-list *ngFor="let post of posts" >
 
   <ion-item>
-  <a >{{post.name}}</a>
+  <a (click)="onClickVisitUser(post.email)" >{{post.name}}</a>
   <p>{{post.postText}}</p>
   <div  style="width: 95%">
     <button style="width: 30%;border-radius: 10px" ion-button outline (click)= "onClickLike()" >Like 0</button>

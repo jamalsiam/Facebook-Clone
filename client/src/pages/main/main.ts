@@ -6,6 +6,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { ProjectService } from '../../app/app.service'
 import { ProfilePage } from './../profile/profile';
+import { UserPage } from './../user/user';
+import { User } from './../user/useremail';
 
 
 /**
@@ -32,7 +34,8 @@ import { ProfilePage } from './../profile/profile';
               public navParams: NavParams,
               public storage: Storage,
               private geolocation: Geolocation,
-              private projectService:ProjectService) {
+              private projectService:ProjectService,
+              public user:User) {
 
    this.storage.get('email').then((val) => {
 
@@ -118,6 +121,18 @@ import { ProfilePage } from './../profile/profile';
       this.posts=data.record;
       console.log(data)
     })
+  }
+  onClickVisitUser(email:string){
+    if(email==this.email)
+    {
+      this.navCtrl.push(ProfilePage)
+    }
+    else
+    {
+      this.user.setUserEmail(""+email);
+      this.navCtrl.push(UserPage)
+    }
+
   }
   
 
