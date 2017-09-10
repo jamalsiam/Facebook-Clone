@@ -136,9 +136,19 @@ module.exports.handlePost={
     }) 
   },
   getAllPost:function(req,res) {
+    var record=[]
     User.find({})
     .then(function(user) {
-      console.log(user)
+      for (var i = 0; i < user.length; i++) { 
+         for (var j = 0; j < user[i].post.length; j++) {
+            record.push({name:user[i].name,
+                        email:user[i].email,
+                        postText:user[i].post[j].postText,
+                        _id:user[i].post[j]._id,
+                        }) 
+         }
+      }
+      res.json({record:record})
     })
   }
 

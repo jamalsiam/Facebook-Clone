@@ -115,6 +115,7 @@ import { User } from './../user/useremail';
     this.posts=undefined;
     this.projectService.getAllPost()
     .subscribe(data=>{
+      this.posts=data.record;
       console.log(data)
     })
 

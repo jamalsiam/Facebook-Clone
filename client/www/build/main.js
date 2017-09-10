@@ -843,9 +843,11 @@ var MainPage = (function () {
         this.posts = undefined;
     };
     MainPage.prototype.getAllPost = function () {
+        var _this = this;
         this.posts = undefined;
         this.projectService.getAllPost()
             .subscribe(function (data) {
+            _this.posts = data.record;
             console.log(data);
         });
     };
