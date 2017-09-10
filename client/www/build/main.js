@@ -225,6 +225,7 @@ ProfilePage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__useremail__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -237,6 +238,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the UserPage page.
  *
@@ -244,11 +246,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var UserPage = (function () {
-    function UserPage(navCtrl, navParams, user) {
+    function UserPage(navCtrl, navParams, user, projectService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.user = user;
-        console.log(this.user.getUserEmail());
+        this.projectService = projectService;
+        this.projectService.getUserInfo({ email: this.user.getUserEmail() })
+            .subscribe(function (data) {
+            console.log(data);
+        });
     }
     UserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad UserPage');
@@ -260,9 +266,10 @@ UserPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-user',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>user</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_2__useremail__["a" /* User */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__useremail__["a" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__useremail__["a" /* User */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__app_app_service__["a" /* ProjectService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__app_app_service__["a" /* ProjectService */]) === "function" && _d || Object])
 ], UserPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=user.js.map
 
 /***/ }),
@@ -715,6 +722,15 @@ var ProjectService = (function () {
             headers: headers
         }).map(function (res) { return res.json(); });
     };
+    ProjectService.prototype.getUserInfo = function (record) {
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]();
+        this.createAuthorizationHeader(headers);
+        headers.append('Content-Type', 'application/json');
+        //var content = JSON.stringify(record);
+        return this.http.post('/api/getuserinfo', record, {
+            headers: headers
+        }).map(function (res) { return res.json(); });
+    };
     ProjectService.prototype.getAllPost = function () {
         return this.http.get('/api/getallpost').map(function (res) { return res.json(); });
     };
@@ -876,10 +892,14 @@ MainPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-main',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/main/main.html"*/'<!--\n  Generated template for the MainPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<style type="text/css">\n	.opaque {\n  -webkit-backdrop-filter: saturate(180%) blur(20px);\n  backdrop-filter: saturate(180%) blur(20px);\n}\n\n.opaque .toolbar-background {\n  background-color: rgba(#f8f8f8, 0.55);\n}\n</style>\n<ion-header class="opaque">\n  <ion-navbar no-border-bottom>\n    <ion-title>Toy Story</ion-title>\n    <ion-buttons right>\n      <button (click)="onViewProfilePage()">\n        <ion-icon name="menu" ></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n  <ion-toolbar no-border-top>\n    <ion-segment [(ngModel)]="apps" primary>\n      <ion-segment-button value="allStory" (click)="getPost(\'allStory\')" >All</ion-segment-button>\n      <ion-segment-button value="favsStory"(click)="getPost(\'favsStory\')" >favs</ion-segment-button>\n      <ion-segment-button value="myStory" (click)="getPost(\'myStory\')">My</ion-segment-button>\n    </ion-segment>\n  </ion-toolbar>\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n  <ion-item>\n    <ion-label floating>Write something...</ion-label>\n    <ion-textarea [(ngModel)]="postText"></ion-textarea>\n  </ion-item>\n  \n  <div style="float: right;">\n\n    <button ion-button icon-only  color="light" (click)="onNavigate()" > \n      <ion-icon ios="ios-navigate" md="md-navigate"></ion-icon>\n    </button>\n\n    <button ion-button icon-only  color="light" (click)="onSelectImage()"> \n      <ion-icon ios="ios-images" md="md-images"></ion-icon>\n    </button>\n\n    <button ion-button round outline (click)="onPostData()">Post</button>\n</div>\n\n<ion-list *ngFor="let post of posts" >\n\n  <ion-item>\n  <a (click)="onClickVisitUser(post.email)" >{{post.name}}</a>\n  <p>{{post.postText}}</p>\n  <div  style="width: 95%">\n    <button style="width: 30%;border-radius: 10px" ion-button outline (click)= "onClickLike()" >Like 0</button>\n    <button style="width: 70%;border-radius: 10px" ion-button outline (click)= "onClickSeeComment()">See Comment 0</button>\n  </div>\n  </ion-item>\n</ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/main/main.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_5__app_app_service__["a" /* ProjectService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__app_app_service__["a" /* ProjectService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__user_useremail__["a" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__user_useremail__["a" /* User */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_geolocation__["a" /* Geolocation */],
+        __WEBPACK_IMPORTED_MODULE_5__app_app_service__["a" /* ProjectService */],
+        __WEBPACK_IMPORTED_MODULE_8__user_useremail__["a" /* User */]])
 ], MainPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=main.js.map
 
 /***/ }),
@@ -935,10 +955,9 @@ var MyApp = (function () {
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
 ], MyApp);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
