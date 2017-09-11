@@ -48,6 +48,16 @@ export class ProjectService{
   }
 
 	
+  addToFavorite(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/addtofavorite', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
 
   changeMobileNumber(record){
      var headers = new Headers();

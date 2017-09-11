@@ -105,6 +105,13 @@ module.exports.handleUser={
       console.log(data)
       res.json({data:data})
     })
+  },
+  addToFavorite:function (req,res) {
+console.log(req.body)
+//    User.update({email:req.body.email}, { $set: { image: req.body.image }})
+  // .then(function (user) {
+    // res.json("s");
+  //})
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
 import { User } from "./useremail"
 import { ProjectService } from '../../app/app.service';
 /**
@@ -18,14 +20,21 @@ import { ProjectService } from '../../app/app.service';
   posts:any;
   userName:string;
   userEmail:string;
+  profileEmail:string;
   mobile:string;
   status:string;
   image:string;
+  star:string="ios-star-outline";
   
   constructor( public navCtrl: NavController,
-   public navParams: NavParams,
-   public user:User,
-   public projectService:ProjectService) {
+              public navParams: NavParams,
+              public user:User,
+              public projectService:ProjectService,
+              public storage: Storage) {
+
+      this.storage.get('email').then((val) => {
+      this.profileEmail= val;
+    })
     this.projectService.getUserInfo({email:this.user.getUserEmail()})
     .subscribe(data=>{
       console.log(data.data)
@@ -38,6 +47,14 @@ import { ProjectService } from '../../app/app.service';
     }) 
   }
 
+  onClickFavorite(){
+    this.projectService.addToFavorite({profileEmail:this.profileEmail,
+                                      userEmail:this.user.getUserEmail()})
+    .subscribe(data=>{
+
+    })
+
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
   }
