@@ -102,16 +102,38 @@ module.exports.handleUser={
   getUserInfo:function (req,res) {
     User.findOne(req.body)
     .then(function(data) {
-      console.log(data)
       res.json({data:data})
     })
   },
   addToFavorite:function (req,res) {
-console.log(req.body)
-//    User.update({email:req.body.email}, { $set: { image: req.body.image }})
-  // .then(function (user) {
-    // res.json("s");
-  //})
+    var isFavorite=false;
+    User.findOne({email:req.body.profileEmail})
+    .then(function(data) {
+      for (var i = 0; i < data.following.length; i++) {
+        if (req.body.userEmail==data.following[i].email) {
+          isFavorite=true;
+          break;
+        }
+      }
+      if (!isFavorite) {
+          User.update({email: req.body.profileEmail}, 
+                      {$push: {following:{email:req.body.userEmail}}})
+          .then(function (user) {
+            User.update({email: req.body.userEmail}, 
+                      {$push: {follower:{email:req.body.profileEmail}}})
+          .then(function (user) {
+            res.json("s");
+          })///   
+        })/// 
+                  console.log("favorite")
+
+      }
+      else
+      {
+        console.log("unfavorite")
+      }
+    })
+      
   }
 
 }
@@ -123,19 +145,16 @@ module.exports.handlePost={
                 image:req.body.image,
                 lat:req.body.latitude,
                 lang:req.body.longitude}
-  console.log(record)  
     User.update(
       {email: req.body.email}, 
       {$push: {post:record}}
     )
     .then(function (user) {
-      console.log(user.firstName)
 
       res.json("s");
     })  
   },
   getProfilePost:function (req,res) {
-    console.log(req.body)
     var record=[];
     User.findOne({email:req.body.email})
     .then(function (user){
