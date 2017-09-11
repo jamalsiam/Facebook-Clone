@@ -49,11 +49,24 @@ var UserSchema = new mongoose.Schema({
     },
     lang:{
       type:String
-    }
-    
-    
-  }
-  ]
+    }  
+  }],
+  following:[
+  {
+    email:{
+      type:String,
+      required: true,
+      unique: true
+    } 
+  }],
+  follower:[
+  {
+    email:{
+      type:String,
+      required: true,
+      unique: true
+    } 
+  }]
 
 });
 
