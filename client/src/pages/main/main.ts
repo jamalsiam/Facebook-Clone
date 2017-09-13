@@ -40,6 +40,7 @@ import { User } from './../user/useremail';
    this.storage.get('email').then((val) => {
 
     this.email=val;
+    this.getFavPost(this.email)
   });
  }
 
@@ -56,7 +57,8 @@ import { User } from './../user/useremail';
     }
     else if(typeRequest=='favsStory')
     {
-        console.log(typeRequest)
+        this.getFavPost(this.email)
+        
     } 
     else
     { 

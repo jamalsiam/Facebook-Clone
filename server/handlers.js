@@ -77,27 +77,27 @@ module.exports.handleUser={
   },
   changeMobileNumber:function (req,res) {
     User.update({email:req.body.email}, { $set: { mobile: req.body.mobile }})
-   .then(function (user) {
+    .then(function (user) {
      res.json("s");
-  })
+   })
   },
   changeStatus:function (req,res) {
     User.update({email:req.body.email}, { $set: { status: req.body.status }})
-   .then(function (user) {
+    .then(function (user) {
       res.json("s");
-  })
+    })
   },
   changeName:function (req,res) {
     User.update({email:req.body.email}, { $set: { name: req.body.name }})
-   .then(function (user) {
+    .then(function (user) {
      res.json("s");
-  })
+   })
   },
   changeImage:function (req,res) {
     User.update({email:req.body.email}, { $set: { image: req.body.image }})
-   .then(function (user) {
+    .then(function (user) {
      res.json("s");
-  })
+   })
   },
   getUserInfo:function (req,res) {
     User.findOne(req.body)
@@ -116,16 +116,16 @@ module.exports.handleUser={
         }
       }
       if (!isFavorite) {
-          User.update({email: req.body.profileEmail}, 
-                      {$push: {following:{email:req.body.userEmail}}})
-          .then(function (user) {
-            User.update({email: req.body.userEmail}, 
-                      {$push: {follower:{email:req.body.profileEmail}}})
+        User.update({email: req.body.profileEmail}, 
+          {$push: {following:{email:req.body.userEmail}}})
+        .then(function (user) {
+          User.update({email: req.body.userEmail}, 
+            {$push: {follower:{email:req.body.profileEmail}}})
           .then(function (user) {
             res.json("s");
           })///   
         })/// 
-                  console.log("favorite")
+        console.log("favorite")
 
       }
       else
@@ -133,57 +133,83 @@ module.exports.handleUser={
         console.log("unfavorite")
       }
     })
-      
+
   }
 
 }
 
 module.exports.handlePost={
-          
+
   onPostData:function (req,res) {
-  var record={postText: req.body.postText,
-                image:req.body.image,
-                lat:req.body.latitude,
-                lang:req.body.longitude}
-    User.update(
-      {email: req.body.email}, 
-      {$push: {post:record}}
-    )
-    .then(function (user) {
+    var record={postText: req.body.postText,
+      image:req.body.image,
+      lat:req.body.latitude,
+      lang:req.body.longitude}
+      User.update(
+        {email: req.body.email}, 
+        {$push: {post:record}}
+        )
+      .then(function (user) {
 
-      res.json("s");
-    })  
-  },
-  getProfilePost:function (req,res) {
-    var record=[];
-    User.findOne({email:req.body.email})
-    .then(function (user){
-      for (var i = 0; i < user.post.length; i++) {
-        record.push({postText:user.post[i].postText,
-                     name:user.name,
-                     email:user.email,
-                     _id:user.post[i]._id })
-      }
-      res.json( {record:record}) 
+        res.json("s");
+      })  
+    },
+    getProfilePost:function (req,res) {
+      var record=[];
+      User.findOne({email:req.body.email})
+      .then(function (user){
+        for (var i = 0; i < user.post.length; i++) {
+          record.push({postText:user.post[i].postText,
+           name:user.name,
+           email:user.email,
+           _id:user.post[i]._id })
+        }
+        res.json( {record:record}) 
 
-    }) 
-  },
-  getAllPost:function(req,res) {
-    var record=[]
-    User.find({})
-    .then(function(user) {
-      for (var i = 0; i < user.length; i++) { 
+      }) 
+    },
+    getAllPost:function(req,res) {
+      var record=[]
+      User.find({})
+      .then(function(user) {
+        for (var i = 0; i < user.length; i++) { 
          for (var j = 0; j < user[i].post.length; j++) {
-            record.push({name:user[i].name,
-                        email:user[i].email,
-                        postText:user[i].post[j].postText,
-                        _id:user[i].post[j]._id,
-                        }) 
-         }
+          record.push({name:user[i].name,
+            email:user[i].email,
+            postText:user[i].post[j].postText,
+            _id:user[i].post[j]._id,
+          }) 
+        }
       }
       res.json({record:record})
     })
+    },
+    getFavPost:function (req,res) {
+      var record =[];
+      var userEmail=[]
+      User.findOne(req.body)
+      .then(function (email) {
+       for (var i = 0; i < email.following.length; i++) {
+          userEmail.push(email.following[i].email)
+      }
+        for (var j = 0; j < userEmail.length; j++) {
+          User.findOne({email:userEmail[j]})
+          .then(function (userInfo) {
+            for (var z = 0; z < userInfo.post.length; z++) {
+              record.push({name:userInfo.name,
+                email:userInfo.email,
+                postText:userInfo.post[z].postText,
+                _id:userInfo.post[z]._id}) 
+            }
+            console.log(record)
+                res.json({record:record}) 
+              
+            
+          }) 
+        }
+      })
+    }
+
+
+
   }
-
-
-}

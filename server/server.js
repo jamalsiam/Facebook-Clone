@@ -27,6 +27,7 @@ app.post('/api/addtofavorite',handlers.handleUser.addToFavorite);
 app.post('/api/onpostdata',handlers.handlePost.onPostData);
 app.post('/api/getprofilepost',handlers.handlePost.getProfilePost);
 app.get('/api/getallpost',handlers.handlePost.getAllPost);
+app.post('/api/getfavpost',handlers.handlePost.getFavPost);
 
 app.get('/api/getMethod',handlers.handleData.getData);
 app.post('/api/postmethod',handlers.handleData.addData);
