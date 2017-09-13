@@ -110,6 +110,11 @@ import { User } from './../user/useremail';
   }
   getFavPost(email:string){
     this.posts=undefined;
+    this.projectService.getFavPost({email:email})
+    .subscribe(data=>{
+      this.posts=data.record;
+      console.log(data)
+    })
   }
   getAllPost(){
     this.posts=undefined;
@@ -118,7 +123,6 @@ import { User } from './../user/useremail';
       this.posts=data.record;
       console.log(data)
     })
-
   }
   getProfilePost(email:string){
     this.posts=undefined;

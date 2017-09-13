@@ -38,6 +38,7 @@ export class SignUpPage {
       }
  			else
  				this.msg=datas;
+      console.log(datas)
 
  		})
 
