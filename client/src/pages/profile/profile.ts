@@ -25,6 +25,8 @@ import { ProjectService } from '../../app/app.service';
  	mobileNumber:string;
  	image:string;
  	base64Image:string;
+ 	follower:number;
+ 	following:number;
 
  	constructor(public navCtrl: NavController,
  		public alertCtrl:AlertController,
@@ -167,6 +169,8 @@ import { ProjectService } from '../../app/app.service';
  			this.mobileNumber=datas.user.mobile;
  			this.status=datas.user.status;
  			this.base64Image=datas.user.image;
+ 			this.following=datas.user.following.length;
+ 			this.follower=datas.user.follower.length;
  		})
  	}
  	onClickLogOut(){

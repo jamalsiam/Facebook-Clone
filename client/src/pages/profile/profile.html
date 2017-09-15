@@ -28,10 +28,20 @@
   border-radius: 50%;
     display: block;
   margin-left: auto;
-  margin-right: auto " >
+  margin-right: auto ">
+      <div  style="width: 98%;position: static;">
+    <button outline ion-button icon-start style="width: 48%;border-radius: 10px">
+      Follower
+      <br>
+      {{follower}}
+    </button>
+    <button outline ion-button icon-end   style="width: 48%;border-radius: 10px">
+      Following
+      <br>
+      {{following}}
+    </button>
+    </div>
 	 <div text-center>
-
-    
     <i text-center style="text-align: center;"> {{name}} </i><br>
  	<small>{{status}}</small>
   </div>

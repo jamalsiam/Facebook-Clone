@@ -25,7 +25,9 @@ import { ProjectService } from '../../app/app.service';
   status:string;
   image:string;
   star:string;
-  //"ios-star-outline"
+  follower:number;
+  following:number;
+
   constructor( public navCtrl: NavController,
               public navParams: NavParams,
               public user:User,
@@ -55,12 +57,16 @@ import { ProjectService } from '../../app/app.service';
       this.status=data.data.status;
       this.image=data.data.image;
       this.posts=data.data.post;
+      this.following=data.data.following.length;
+      this.follower=data.data.follower.length;
+
     }) 
   }
 
   onClickFavorite(){
     if (this.star=="ios-star-outline") {
         this.star="ios-star";
+        this.follower++;
         this.projectService.addToFavorite({profileEmail:this.profileEmail,
                                           userEmail:this.user.getUserEmail(),
                                           sign:true})
@@ -70,6 +76,7 @@ import { ProjectService } from '../../app/app.service';
     }
     else
     {
+      this.follower--;
       this.star="ios-star-outline";
       this.projectService.addToFavorite({profileEmail:this.profileEmail,
                                       userEmail:this.user.getUserEmail(),

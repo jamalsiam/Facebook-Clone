@@ -193,6 +193,8 @@ var ProfilePage = (function () {
             _this.mobileNumber = datas.user.mobile;
             _this.status = datas.user.status;
             _this.base64Image = datas.user.image;
+            _this.following = datas.user.following.length;
+            _this.follower = datas.user.follower.length;
         });
     };
     ProfilePage.prototype.onClickLogOut = function () {
@@ -204,15 +206,12 @@ var ProfilePage = (function () {
 ProfilePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-profile',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/profile/profile.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>profile</ion-title>\n    <ion-buttons right>\n    <button (click)="onClickLogOut()" >\n<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>\n    </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n <img *ngIf="!base64Image" (click)="accessGallery()" src="assets/icon/fb_logo.png" height="100px" style="\n  border-radius: 50%;\n    display: block;\n  margin-left: auto;\n  margin-right: auto " >\n\n <img  [src]="base64Image" *ngIf="base64Image" (click)="accessGallery()" height="100px" style="\n  border-radius: 50%;\n    display: block;\n  margin-left: auto;\n  margin-right: auto " >\n	 <div text-center>\n\n    \n    <i text-center style="text-align: center;"> {{name}} </i><br>\n 	<small>{{status}}</small>\n  </div>\n  <p>{{email}}</p>\n  <p>{{mobileNumber}}</p>\n\n  <ion-list>\n\n  <ion-list-header>\n    Info:\n  </ion-list-header>\n\n\n  <button ion-item (click)="changeName()">\n	Change Name\n  </button>\n\n\n  <button ion-item (click)="changeStatus()">\n    Change Status\n  </button>\n  <button ion-item (click)="changeMobileNumber()">\n    Change Mobile Number\n  </button>\n\n\n</ion-list>\n\n	\n\n\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/profile/profile.html"*/,
+        selector: 'page-profile',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/profile/profile.html"*/'<!--\n  Generated template for the ProfilePage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>profile</ion-title>\n    <ion-buttons right>\n    <button (click)="onClickLogOut()" >\n<ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>\n    </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n <img *ngIf="!base64Image" (click)="accessGallery()" src="assets/icon/fb_logo.png" height="100px" style="\n  border-radius: 50%;\n    display: block;\n  margin-left: auto;\n  margin-right: auto " >\n\n <img  [src]="base64Image" *ngIf="base64Image" (click)="accessGallery()" height="100px" style="\n  border-radius: 50%;\n    display: block;\n  margin-left: auto;\n  margin-right: auto ">\n      <div  style="width: 98%;position: static;">\n    <button outline ion-button icon-start style="width: 48%;border-radius: 10px">\n      Follower\n      <br>\n      {{follower}}\n    </button>\n    <button outline ion-button icon-end   style="width: 48%;border-radius: 10px">\n      Following\n      <br>\n      {{following}}\n    </button>\n    </div>\n	 <div text-center>\n    <i text-center style="text-align: center;"> {{name}} </i><br>\n 	<small>{{status}}</small>\n  </div>\n  <p>{{email}}</p>\n  <p>{{mobileNumber}}</p>\n\n  <ion-list>\n\n  <ion-list-header>\n    Info:\n  </ion-list-header>\n\n\n  <button ion-item (click)="changeName()">\n	Change Name\n  </button>\n\n\n  <button ion-item (click)="changeStatus()">\n    Change Status\n  </button>\n  <button ion-item (click)="changeMobileNumber()">\n    Change Mobile Number\n  </button>\n\n\n</ion-list>\n\n	\n\n\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/profile/profile.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_4__app_app_service__["a" /* ProjectService */],
-        __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__app_app_service__["a" /* ProjectService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_app_service__["a" /* ProjectService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
 ], ProfilePage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=profile.js.map
 
 /***/ }),
@@ -248,7 +247,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var UserPage = (function () {
-    //"ios-star-outline"
     function UserPage(navCtrl, navParams, user, projectService, storage) {
         var _this = this;
         this.navCtrl = navCtrl;
@@ -278,12 +276,15 @@ var UserPage = (function () {
             _this.status = data.data.status;
             _this.image = data.data.image;
             _this.posts = data.data.post;
+            _this.following = data.data.following.length;
+            _this.follower = data.data.follower.length;
         });
     }
     UserPage.prototype.onClickFavorite = function () {
         var _this = this;
         if (this.star == "ios-star-outline") {
             this.star = "ios-star";
+            this.follower++;
             this.projectService.addToFavorite({ profileEmail: this.profileEmail,
                 userEmail: this.user.getUserEmail(),
                 sign: true })
@@ -292,6 +293,7 @@ var UserPage = (function () {
             });
         }
         else {
+            this.follower--;
             this.star = "ios-star-outline";
             this.projectService.addToFavorite({ profileEmail: this.profileEmail,
                 userEmail: this.user.getUserEmail(),
@@ -309,7 +311,7 @@ var UserPage = (function () {
 UserPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-user',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n	<ion-navbar>\n		<ion-title>{{userName}}</ion-title>\n		<ion-buttons right>\n		<button (click)="onClickFavorite()">\n			  <ion-icon ios="ios-star" md="{{star}}"></ion-icon>\n		</button>\n		</ion-buttons>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<ion-list>\n\n		\n		<img *ngIf="!image"  src="assets/icon/fb_logo.png" height="100px" style="\n		border-radius: 50%;\n		display: block;\n		margin-left: auto;\n		margin-right: auto " >\n\n		<img  [src]="image" *ngIf="image"  height="100px" style="\n		border-radius: 50%;\n		display: block;\n		margin-left: auto;\n		margin-right: auto " >\n		\n		<ion-list-header>\n			Info:\n		</ion-list-header>\n		<ion-item>\n			<P>Email:{{userEmail}}</P>\n		</ion-item>\n		<ion-item >\n			<p>Moblie:{{mobile}}</p>\n		</ion-item>\n		<ion-item >\n			<p >Ststus:{{ststus}}</p>\n		</ion-item>\n	</ion-list>\n	<ion-list  >\n		<ion-list-header>\n			{{userName}} Post\'s:\n		</ion-list-header>\n		<ion-item *ngFor="let post of posts">\n			<a>{{userName}}</a>\n			<p>{{post.postText}}</p>\n			<div  style="width: 95%">\n				<button style="width: 30%;border-radius: 10px" ion-button outline (click)= "onClickLike()" >Like 0</button>\n				<button style="width: 70%;border-radius: 10px" ion-button outline (click)= "onClickSeeComment()">See Comment 0</button>\n			</div>\n		</ion-item>\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/,
+        selector: 'page-user',template:/*ion-inline-start:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/'<!--\n  Generated template for the UserPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n	<ion-navbar>\n		<ion-title>{{userName}}</ion-title>\n		<ion-buttons right>\n			<button (click)="onClickFavorite()">\n				<ion-icon ios="ios-star" md="{{star}}"></ion-icon>\n			</button>\n		</ion-buttons>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n	<ion-list>\n\n		\n		<img *ngIf="!image"  src="assets/icon/fb_logo.png" height="100px" style="\n		border-radius: 50%;\n		display: block;\n		margin-left: auto;\n		margin-right: auto " >\n\n		<img  [src]="image" *ngIf="image"  height="100px" style="\n		border-radius: 50%;\n		display: block;\n		margin-left: auto;\n		margin-right: auto " >\n		<div  style="width: 98%;position: static;">\n		<button outline ion-button icon-start style="width: 48%;border-radius: 10px">\n			Follower\n			<br>\n			{{follower}}\n		</button>\n		<button outline ion-button icon-end   style="width: 48%;border-radius: 10px">\n			Following\n			<br>\n			{{following}}\n		</button>\n		</div>\n		<ion-list-header>\n			Info:\n		</ion-list-header>\n		<ion-item>\n			<P>Email:{{userEmail}}</P>\n		</ion-item>\n		<ion-item >\n			<p>Moblie:{{mobile}}</p>\n		</ion-item>\n		<ion-item >\n			<p >Ststus:{{ststus}}</p>\n		</ion-item>\n	</ion-list>\n	<ion-list  >\n		<ion-list-header>\n			{{userName}} Post\'s:\n		</ion-list-header>\n		<ion-item *ngFor="let post of posts">\n			<a>{{userName}}</a>\n			<p>{{post.postText}}</p>\n			<div  style="width: 95%">\n				<button style="width: 30%;border-radius: 10px" ion-button outline (click)= "onClickLike()" >Like 0</button>\n				<button style="width: 70%;border-radius: 10px" ion-button outline (click)= "onClickSeeComment()">See Comment 0</button>\n			</div>\n		</ion-item>\n	</ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jamal/Desktop/Facebook Clone/client/src/pages/user/user.html"*/,
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__useremail__["a" /* User */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__useremail__["a" /* User */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__app_app_service__["a" /* ProjectService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__app_app_service__["a" /* ProjectService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_storage__["b" /* Storage */]) === "function" && _e || Object])
 ], UserPage);
@@ -730,10 +732,9 @@ var ProjectService = (function () {
 }());
 ProjectService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
 ], ProjectService);
 
-var _a;
 //# sourceMappingURL=app.service.js.map
 
 /***/ }),
