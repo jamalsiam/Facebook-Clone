@@ -134,6 +134,20 @@ module.exports.handleUser={
       }
     })
 
+  },
+  isFavorite:function (req,res) {
+    User.findOne({email:req.body.profileEmail})
+    .then(function (userInfo) {
+      for (var i = 0; i < userInfo.following.length; i++) {
+        if(userInfo.following[i].email==req.body.userEmail){
+          res.json(true);
+          console.log("yes")
+          break;
+        }
+      }
+      console.log("no")
+      res.json(false);
+    })
   }
 
 }

@@ -148,6 +148,17 @@ export class ProjectService{
       }).map(res => res.json())
   }
 
+  isFavorite(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/isfavorite', record, {
+        headers: headers
+      }).map(res => res.json())
+  }
+
   getUserInfo(record){
      var headers = new Headers();
     this.createAuthorizationHeader(headers);

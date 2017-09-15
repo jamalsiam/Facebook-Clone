@@ -24,8 +24,8 @@ import { ProjectService } from '../../app/app.service';
   mobile:string;
   status:string;
   image:string;
-  star:string="ios-star-outline";
-  
+  star:string;
+  //"ios-star-outline"
   constructor( public navCtrl: NavController,
               public navParams: NavParams,
               public user:User,
@@ -34,6 +34,17 @@ import { ProjectService } from '../../app/app.service';
 
       this.storage.get('email').then((val) => {
       this.profileEmail= val;
+      this.projectService.isFavorite({profileEmail:val,
+                                      userEmail:this.user.getUserEmail()})
+      .subscribe(data=>{
+        if (data) {
+          this.star="ios-star"
+        }
+        else
+        {
+          this.star="ios-star-outline"
+        }
+      })
     })
     this.projectService.getUserInfo({email:this.user.getUserEmail()})
     .subscribe(data=>{
