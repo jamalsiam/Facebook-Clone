@@ -106,9 +106,9 @@ module.exports.handleUser={
     })
   },
   addToFavorite:function (req,res) {
+    var isFavorite=false;
     if (req.body.sign) 
     {
-      var isFavorite=false;
       User.findOne({email:req.body.profileEmail})
       .then(function(data) {
         for (var i = 0; i < data.following.length; i++) {
