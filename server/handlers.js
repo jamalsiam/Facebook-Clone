@@ -106,34 +106,49 @@ module.exports.handleUser={
     })
   },
   addToFavorite:function (req,res) {
-    var isFavorite=false;
-    User.findOne({email:req.body.profileEmail})
-    .then(function(data) {
-      for (var i = 0; i < data.following.length; i++) {
-        if (req.body.userEmail==data.following[i].email) {
-          isFavorite=true;
-          break;
+    if (req.body.sign) 
+    {
+      var isFavorite=false;
+      User.findOne({email:req.body.profileEmail})
+      .then(function(data) {
+        for (var i = 0; i < data.following.length; i++) {
+          if (req.body.userEmail==data.following[i].email) {
+            isFavorite=true;
+            break;
+          }
         }
-      }
-      if (!isFavorite) {
-        User.update({email: req.body.profileEmail}, 
-          {$push: {following:{email:req.body.userEmail}}})
-        .then(function (user) {
-          User.update({email: req.body.userEmail}, 
-            {$push: {follower:{email:req.body.profileEmail}}})
+        if (!isFavorite) {
+          User.update({email: req.body.profileEmail}, 
+            {$push: {following:{email:req.body.userEmail}}})
           .then(function (user) {
-            res.json("s");
-          })///   
-        })/// 
-        console.log("favorite")
-
-      }
-      else
-      {
-        console.log("unfavorite")
-      }
-    })
-
+            User.update({email: req.body.userEmail}, 
+              {$push: {follower:{email:req.body.profileEmail}}})
+            .then(function (user) {
+              res.json("s");
+            })///   
+          })/// 
+          console.log("favorite")
+        }
+        else
+        {
+          console.log("unfavorite")
+        }
+      })
+    }
+    else  //Remove from list following
+    {
+      User.update({email: req.body.profileEmail}, 
+        {$pull: {following:{email:req.body.userEmail}}})
+      .then(function (user) {
+        console,log("Remove")
+        User.update({email: req.body.userEmail}, 
+          {$pull: {follower:{email:req.body.profileEmail}}})
+        .then(function (user) {
+          console,log("Remove")
+          res.json("s");
+        })///   
+      })/// 
+    }
   },
   isFavorite:function (req,res) {
     User.findOne({email:req.body.profileEmail})

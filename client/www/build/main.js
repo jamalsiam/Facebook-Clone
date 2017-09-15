@@ -281,10 +281,25 @@ var UserPage = (function () {
         });
     }
     UserPage.prototype.onClickFavorite = function () {
-        this.projectService.addToFavorite({ profileEmail: this.profileEmail,
-            userEmail: this.user.getUserEmail() })
-            .subscribe(function (data) {
-        });
+        var _this = this;
+        if (this.star == "ios-star-outline") {
+            this.star = "ios-star";
+            this.projectService.addToFavorite({ profileEmail: this.profileEmail,
+                userEmail: this.user.getUserEmail(),
+                sign: true })
+                .subscribe(function (data) {
+                _this.star = "ios-star";
+            });
+        }
+        else {
+            this.star = "ios-star-outline";
+            this.projectService.addToFavorite({ profileEmail: this.profileEmail,
+                userEmail: this.user.getUserEmail(),
+                sign: false })
+                .subscribe(function (data) {
+                _this.star = "ios-star-outline";
+            });
+        }
     };
     UserPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad UserPage');

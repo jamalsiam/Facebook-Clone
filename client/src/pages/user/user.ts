@@ -59,12 +59,25 @@ import { ProjectService } from '../../app/app.service';
   }
 
   onClickFavorite(){
-    this.projectService.addToFavorite({profileEmail:this.profileEmail,
-                                      userEmail:this.user.getUserEmail()})
-    .subscribe(data=>{
-
-    })
-
+    if (this.star=="ios-star-outline") {
+        this.star="ios-star";
+        this.projectService.addToFavorite({profileEmail:this.profileEmail,
+                                          userEmail:this.user.getUserEmail(),
+                                          sign:true})
+        .subscribe(data=>{
+          this.star="ios-star";
+       })
+    }
+    else
+    {
+      this.star="ios-star-outline";
+      this.projectService.addToFavorite({profileEmail:this.profileEmail,
+                                      userEmail:this.user.getUserEmail(),
+                                      sign:false})
+      .subscribe(data=>{
+        this.star="ios-star-outline";
+       }) 
+    }
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
