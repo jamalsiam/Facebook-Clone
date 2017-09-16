@@ -219,29 +219,39 @@ module.exports.handlePost={
       User.findOne(req.body)
       .then(function (email) {
        for (var i = 0; i < email.following.length; i++) {
-          userEmail.push(email.following[i].email)
+        userEmail.push(email.following[i].email)
       }
-        for (var j = 0; j < userEmail.length; j++) {
-          User.findOne({email:userEmail[j]})
-          .then(function (userInfo) {
-            for (var z = 0; z < userInfo.post.length; z++) {
-              record.push({name:userInfo.name,
-                email:userInfo.email,
-                postText:userInfo.post[z].postText,
-                _id:userInfo.post[z]._id}) 
-            }
-            console.log(record)
-                res.json({record:record}) 
-              
-            
-          }) 
-        }
-      })
-    }
-}
+      for (var j = 0; j < userEmail.length; j++) {
+        User.findOne({email:userEmail[j]})
+        .then(function (userInfo) {
+          for (var z = 0; z < userInfo.post.length; z++) {
+            record.push({name:userInfo.name,
+              email:userInfo.email,
+              postText:userInfo.post[z].postText,
+              _id:userInfo.post[z]._id}) 
+          }
+         // console.log(record)
+          res.json({record:record}) 
 
-  module.exports.handleLike={
-    putLike:function(req,res){
-        //postId email
+
+        }) 
+      }
+    })
     }
   }
+
+module.exports.handleLike={
+  putLike:function(req,res){
+            //postId
+            //emailProfile
+              //emailUser
+
+    User.findOneAndUpdate({_id: req.body.postId}, {$push:{like:{email:req.body.emailProfile}}}, {new: false}, function(err, doc){
+      if(err){
+        console.log("Something wrong when updating data!");
+      }
+       console.log(doc);
+      });
+  }
+   
+}
