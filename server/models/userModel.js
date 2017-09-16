@@ -43,7 +43,7 @@ post:[
 	image:{
 		type:String
 	},
-	
+
 	lat:{
 		type:String
 	},
@@ -55,8 +55,19 @@ post:[
 		email:{
 			type:String
 		}
-	}
-	]  
+	}],
+	comment:[
+	{
+		email:{
+			type:String
+		},
+		name:{
+			type:String
+		}
+		commentText:{
+			type:String
+		}
+	}]  
 }],
 following:[
 {
