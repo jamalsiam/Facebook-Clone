@@ -147,6 +147,17 @@ import { User } from './../user/useremail';
 
   }
   
-
+  onClickLike(postId:string){
+    this.projectService.putLike({postId:postId,email:this.email})
+    .subscribe(data=>{
+      if (data) {
+        
+      }
+      else
+      {
+        
+      }
+    })
+  }
 
 }

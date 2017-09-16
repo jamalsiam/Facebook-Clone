@@ -172,7 +172,17 @@ export class ProjectService{
 
   getAllPost(){
         return this.http.get('/api/getallpost').map(res=> res.json());
+  }
 
+  putLike(record){
+     var headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    headers.append('Content-Type', 'application/json');
+    //var content = JSON.stringify(record);
+    return this.http.post(
+      '/api/putlike', record, {
+        headers: headers
+      }).map(res => res.json())
   }
 
 }
