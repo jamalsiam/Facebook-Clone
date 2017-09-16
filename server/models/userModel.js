@@ -63,7 +63,7 @@ post:[
 		},
 		name:{
 			type:String
-		}
+		},
 		commentText:{
 			type:String
 		}
