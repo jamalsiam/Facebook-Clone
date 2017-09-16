@@ -25,10 +25,13 @@ app.post('/api/changeimage',handlers.handleUser.changeImage);
 app.post('/api/getuserinfo',handlers.handleUser.getUserInfo);
 app.post('/api/addtofavorite',handlers.handleUser.addToFavorite);
 app.post('/api/isfavorite',handlers.handleUser.isFavorite);
+
 app.post('/api/onpostdata',handlers.handlePost.onPostData);
 app.post('/api/getprofilepost',handlers.handlePost.getProfilePost);
 app.get('/api/getallpost',handlers.handlePost.getAllPost);
 app.post('/api/getfavpost',handlers.handlePost.getFavPost);
+
+app.post('/api/putlike',handlers.handleLike.putLike);
 
 app.get('/api/getMethod',handlers.handleData.getData);
 app.post('/api/postmethod',handlers.handleData.addData);

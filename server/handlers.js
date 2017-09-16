@@ -238,7 +238,10 @@ module.exports.handlePost={
         }
       })
     }
+}
 
-
-
+  module.exports.handleLike={
+    putLike:function(req,res){
+        //postId email
+    }
   }
