@@ -245,8 +245,8 @@ module.exports.handleLike={
             //postId
             //emailProfile
               //emailUser
-
-    User.findOneAndUpdate({_id: req.body.postId}, {$push:{like:{email:req.body.emailProfile}}}, {new: false}, function(err, doc){
+              console.log(req.body.postId,req.body.emailProfile,req.body.emailUser)
+    User.findOneAndUpdate({"post"._id: req.body.postId}, {$push:{like:{email:req.body.emailProfile}}}, {new: true}, function(err, doc){
       if(err){
         console.log("Something wrong when updating data!");
       }
