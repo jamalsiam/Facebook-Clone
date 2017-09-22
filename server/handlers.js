@@ -242,16 +242,18 @@ module.exports.handlePost={
 
 module.exports.handleLike={
   putLike:function(req,res){
+    
             //postId
             //emailProfile
-              //emailUser
-              console.log(req.body.postId,req.body.emailProfile,req.body.emailUser)
-    User.findOneAndUpdate({"post"._id: req.body.postId}, {$push:{like:{email:req.body.emailProfile}}}, {new: true}, function(err, doc){
-      if(err){
-        console.log("Something wrong when updating data!");
-      }
-       console.log(doc);
-      });
-  }
-   
+              //emailUser         
+    User.update(
+        {email: req.body.emailUser}, 
+        {post: {like:{$push: {email:req.body.emailProfile}}},_id:req.body.postId}
+        )
+      .then(function (user) {
+        console.log(user)
+        res.json("s");
+      })
+
+  }   
 }
